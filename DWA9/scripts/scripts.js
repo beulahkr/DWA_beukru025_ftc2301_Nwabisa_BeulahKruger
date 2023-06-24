@@ -1,7 +1,7 @@
 // Fully working scripts.js file
 
 import { books, authors, genres, BOOKS_PER_PAGE } from "./data.js"
-import { createPreview } from "./functions.js";
+import {PreviewComponent } from "./functions.js";
  
 let page = 1;
 let matches = books
@@ -97,9 +97,7 @@ document.querySelector('[data-header-settings]').addEventListener('click', () =>
     document.querySelector('[data-settings-overlay]').open = true 
 })
 
-document.querySelector('[data-list-close]').addEventListener('click', () => {
-    document.querySelector('[data-list-active]').open = false
-})
+
 
 document.querySelector('[data-settings-form]').addEventListener('submit', (event) => {
     event.preventDefault()
@@ -211,8 +209,15 @@ document.querySelector('[data-list-button]').addEventListener('click', () => {
     page += 1
 })
 
-// event handler using the createPreview
-const listItemsHandler = createPreview(books, authors);
+//preview:
 
-document.querySelector('[data-list-items]').addEventListener('click', listItemsHandler);
+document.querySelector('[data-list-items]').addEventListener('click', (event) => {
 
+
+const previewComponent = new PreviewComponent();
+previewComponent.showPreview(event)
+
+document.querySelector('[data-list-items]').appendChild(previewComponent);
+
+console.log(previewComponent)
+})
