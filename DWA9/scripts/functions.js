@@ -1,11 +1,9 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from "./data.js"
 
-export class PreviewComponent extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHTML = `
-      <dialog class="overlay" data-list-active>
+const template = document.createElement("template")
+template.innerHTML = `
+    
+      <dialog  class="overlay" data-list-active>
         <div class="overlay__preview">
           <img class="overlay__blur" data-list-blur src="">
           <img class="overlay__image" data-list-image src="">
@@ -19,7 +17,15 @@ export class PreviewComponent extends HTMLElement {
           <button class="overlay__button overlay__button_primary" data-list-close>Close</button>
         </div>
       </dialog>
-    `;
+      `
+export class PreviewComponent extends HTMLElement {
+  constructor() {
+    super();
+    const templateContent = template.content
+    console.log(template)
+  const clone = document.importNode(templateContent,true)
+    this.appendChild(clone)
+    console.log(this)
     this.activeBook = null;
   }
 
@@ -33,7 +39,8 @@ export class PreviewComponent extends HTMLElement {
   }
 
   showPreview(event) {
-   console.log("show preview")
+    
+   //console.log("show preview")
 
     const pathArray = Array.from(event.path || event.composedPath());
     
@@ -56,12 +63,12 @@ export class PreviewComponent extends HTMLElement {
 
 updatePreview(book) {
     console.log('update preview hello')
-    this.shadowRoot.querySelector('[data-list-blur]').src = book.image;
-    this.shadowRoot.querySelector('[data-list-image]').src = book.image;
-    this.shadowRoot.querySelector('[data-list-title]').innerText = book.title;
-    this.shadowRoot.querySelector('[data-list-subtitle]').innerText = `${authors[book.author]} (${new Date(book.published).getFullYear()})`;
-    this.shadowRoot.querySelector('[data-list-description]').innerText = book.description;
-    this.shadowRoot.querySelector('[data-list-active]').setAttribute('open', true)
+    this.querySelector('[data-list-blur]').src = book.image;
+    this.querySelector('[data-list-image]').src = book.image;
+    this.querySelector('[data-list-title]').innerText = book.title;
+    this.querySelector('[data-list-subtitle]').innerText = `${authors[book.author]} (${new Date(book.published).getFullYear()})`;
+    this.querySelector('[data-list-description]').innerText = book.description;
+    this.querySelector('[data-list-active]').open = true;
   }
 }
 

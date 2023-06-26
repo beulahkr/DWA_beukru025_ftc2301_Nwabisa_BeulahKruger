@@ -213,7 +213,6 @@ document.querySelector('[data-list-button]').addEventListener('click', () => {
 
 document.querySelector('[data-list-items]').addEventListener('click', (event) => {
 
-
 const previewComponent = new PreviewComponent();
 previewComponent.showPreview(event)
 
