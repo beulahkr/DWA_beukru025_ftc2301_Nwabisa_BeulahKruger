@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tally Counter App</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/lit@2.0.0/lit.js"></script>
+</head>
+
+<body>
+    <tally-counter></tally-counter>
+
+    <script type="module">
+        import { html, css, LitElement } from 'lit';
+
+        class TallyCounter extends LitElement {
+            static styles = css`
+        .counter {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          margin-top: 50px;
+        }
+
+        .counter-value {
+          font-size: 48px;
+          font-weight: bold;
+        }
+
+        .counter-actions {
+          margin-top: 20px;
+          display: flex;
+          gap: 10px;
+        }
+
+        button {
+          padding: 10px 20px;
+          font-size: 18px;
+        }
+      `;
+
+            static properties = {
+                count: { type: Number },
+            };
+
+            constructor() {
+                super();
+                this.count = 0;
+            }
+
+            increment() {
+                this.count++;
+            }
+
+            decrement() {
+                this.count--;
+            }
+
+            reset() {
+                this.count = 0;
+            }
+
+            render() {
+                return html`
+          <div class="counter">
+            <div class="counter-value">${this.count}</div>
+            <div class="counter-actions">
+              <button @click=${this.decrement}>-</button>
+              <button @click=${this.increment}>+</button>
+              <button @click=${this.reset}>Reset</button>
+            </div>
+          </div>
+        `;
+            }
+        }
+
+        customElements.define('tally-counter', TallyCounter);
+    </script>
+</body>
+
+</html>
