@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" class="sl-theme-dark">
+
+<head>
+    <link rel="stylesheet" media="(prefers-color-scheme:light)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.1/cdn/themes/light.css" />
+    <link rel="stylesheet" media="(prefers-color-scheme:dark)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.1/cdn/themes/dark.css"
+        onload="document.documentElement.classList.add('sl-theme-dark');" />
+
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.1/cdn/shoelace-autoloader.js"></script>
+    <script type="module" src="./redux.js"defer></script>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="path/to/shoelace/dist/themes/dark.css" />
+
+
+</head>
+<header>
+    <h1>Tally Count</h1>
+    <sl-divider></sl-divider>
+</header>
+
+
+<main>
+    <main class="counter">
+        <sl-input class="counter__value" data-key="number" readonly value="0" size="large"></sl-input>
+        <div class="counter__actions">
+            <sl-button-group size="large">
+                <sl-button data-key="subtract" class="counter__button" size="large">
+                    -
+                </sl-button>
+                <sl-button data-key="add" class="counter__button" size="large">
+                    +
+                </sl-button>
+                <sl-button data-key="reset" class="counter__button" size="large">
+                    Reset
+                </sl-button>
+            </sl-button-group>
+
+        </div>
+    </main>
+
+</main>
+
+</html>
